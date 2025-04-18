@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 15px 20px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 15px 15px;
+        }
+
+        header img {
+            height: 80px;
+            margin-right: 15px;
+        }
+
+        header div {
+            color: #333;
+        }
+
+        nav {
+            background-color: #002855;
+            padding: 12px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 25px;
+            position: relative;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        nav ul li a:hover {
+            color: #FFC107;
+        }
+
+        nav ul li a::after {
+            content: "";
+            width: 0;
+            height: 2px;
+            background-color: #FFC107;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s ease-in-out;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #218838;
+        }
+        #footer {
+            background: url('footer-bg.jpg') center/cover no-repeat; /* Replace with actual background */
+            padding: 30px 0;
+            position: relative;
+        }
+        
+        /* Footer Styling */
+        footer {
+            color: white;
+            text-align: center;
+        }
+        
+        .footer-content {
+            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 800px;
+            margin: auto;
+        }
+        
+        .footer-content p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        
+        strong {
+            color: orange;
+        }
+        
+        /* Social Icons */
+        .social-icons a {
+            color: white; /* Default icon color */
+            margin: 0 10px;
+            font-size: 20px;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+        
+        .social-icons a:hover {
+            color: orange; /* Hover color */
+        }
+        
+        
+        /* Privacy Link */
+        .privacy {
+            display: block;
+            margin: 10px 0;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .privacy:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .footer-content {
+                padding: 15px;
+            }
+        
+            .social-icons a {
+                font-size: 16px;
+                margin: 0 8px;
+            }
+        
+            .footer-content p {
+                font-size: 12px;
+            }
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://tse3.mm.bing.net/th?id=OIP.ZMmOL1kqTR2H1yYs4ZZKhgHaHc&pid=Api&P=0&h=180" alt="JNTU-GV Logo">
+        <div>
+            <h1>JAWAHARLAL NEHRU TECHNOLOGICAL UNIVERSITY GURAJADA VIZIANAGARAM</h1>
+            <p>VIZIANAGARAM - 535 003, A.P (Established by Andhra Pradesh Act No.22 of 2021)</p>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'notices' %}">Notices</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+            <li><a href="{% url 'account' %}">Account</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h2>Contact Us</h2>
+        <form action="submit_feedback.php" method="POST">
+            <div class="form-group">
+                <label for="name">Name (optional):</label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit">Send Feedback</button>
+        </form>
+    </div>
+    <section id="footer">
+        <footer>
+            <div class="footer-content">
+                <p>
+                    <strong>Contact Us:</strong> JAWAHARLAL NEHRU TECHNOLOGICAL UNIVERSITY-GURAJADA VIZIANAGARAM, 
+                    DWARAPUDI, VIZIANAGARAM, ANDHRA PRADESH - 535 003, Andhra Pradesh, INDIA.
+                </p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/JntuVizianagaram/" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://in.linkedin.com/school/jntugv/" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://x.com/JNTU_Gurajada" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.instagram.com/jntu_gurajada/" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@JNTUGV" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+                
+                <a href="#" class="privacy">Privacy & Policy</a>
+                <p>© Copyright 2024 <strong>JNTU-GV Vizianagaram</strong>. All Rights Reserved.</p>
+                <p>Designed and Developed by <strong>M.Likhith Kumar, JNTU-GV</strong></p>
+            </div>
+        </footer>
+    </section>
+    
+</body>
+</html>

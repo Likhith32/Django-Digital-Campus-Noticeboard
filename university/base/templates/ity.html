@@ -1,0 +1,175 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ITYUKTA 2k25</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: #f7f9fc;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #4a90e2;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      color: #4a90e2;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .content {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .image-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .image-gallery img {
+      width: 45%;
+      max-width: 400px;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .image-gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .event-box {
+      background: #fff;
+      padding: 20px;
+      margin-top: 20px;
+      border-left: 5px solid #4a90e2;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .event-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .event-title {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .event-time {
+      font-style: italic;
+      color: #555;
+      margin-top: 10px;
+    }
+
+    footer {
+      background: #4a90e2;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .image-gallery img {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>ITYUKTA 2k25</h1>
+    <p>Igniting Ideas, Empowering Innovation 🚀💡✨</p>
+  </header>
+
+  <section>
+    <h2 class="section-title">About ITYUKTA</h2>
+    <div class="content">
+      <p><strong>ITYUKTA</strong>, meaning "well-connected" and "skillfully engaged," embodies a vision of technological empowerment, collaboration, and limitless learning.</p>
+      <p>Guided by the mantra “Igniting Ideas, Empowering Innovation,” ITYUKTA 2k25 is a melting pot of creativity and technology, bringing together bright minds to explore the ever-evolving digital landscape.</p>
+      <p>With flagship workshops on <strong>DevOps, Chatbot Development, and Power BI</strong>, ITYUKTA 2k25 equips students with cutting-edge skills, transforming theoretical knowledge into real-world expertise.</p>
+      <p>It is more than an event—it is a movement that fuels passion, sharpens skills, and nurtures future leaders in technology.</p>
+      <p><strong>Join us on February 24 and 25</strong>, where ideas take flight, knowledge turns into action, and innovation drives the future!</p>
+    </div>
+
+    <div class="image-gallery">
+        <img src="{% static 'base/images/ity.png' %}" alt="ITYUKTA Image 1">
+        <img src="{% static 'base/images/ity.png' %}" alt="ITYUKTA Image 2">
+      </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Culturals</h2>
+
+    <div class="event-box">
+      <div class="event-title">Cultural Night</div>
+      <div class="content">
+        <p>The Cultural Night of ITYUKTA 2k25, held on February 24, was a mesmerizing evening that brought together vibrant performances, dazzling lights, and electrifying energy.</p>
+        <p>Students showcased their talents through dance, music, drama, and art, blending traditional and modern themes with passion and creativity.</p>
+        <p class="event-time">📅 Date: Feb 24 | 🕕 Time: 6 PM</p>
+      </div>
+    </div>
+
+    <div class="event-box">
+      <div class="event-title">FlashMob</div>
+      <div class="content">
+        <p>The FlashMob on February 25 transformed an ordinary moment into a thrilling spectacle, as dancers emerged from the crowd and delivered a stunning, synchronized routine.</p>
+        <p>The performance electrified the atmosphere, leaving the crowd in awe and amplifying the festive spirit of ITYUKTA 2k25.</p>
+        <p class="event-time">📅 Date: Feb 25 | 🕓 Time: 4 PM</p>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    <p>© 2025 ITYUKTA | Powered by Passion & Innovation</p>
+  </footer>
+
+  <script>
+    // Optional: Add JS interactivity later
+    console.log("Welcome to ITYUKTA 2k25 🌟");
+  </script>
+
+</body>
+</html>

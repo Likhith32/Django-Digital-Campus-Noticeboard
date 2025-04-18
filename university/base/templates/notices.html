@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications | JNTU-GV University</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        /* Header Styling */
+        header {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 15px 20px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 15px 15px;
+        }
+
+        header img {
+            height: 80px;
+            margin-right: 15px;
+        }
+
+        header div {
+            color: #333;
+        }
+
+        /* Navigation Bar Styling */
+        nav {
+            background-color: #002855;
+            padding: 12px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 25px;
+            position: relative;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        nav ul li a:hover {
+            color: #FFC107;
+        }
+
+        nav ul li a::after {
+            content: "";
+            width: 0;
+            height: 2px;
+            background-color: #FFC107;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s ease-in-out;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Layout Styling */
+        .container {
+            display: flex;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(to bottom, #6a0dad, #8e44ad);
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 3px 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar button {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            text-transform: uppercase;
+        }
+
+        .sidebar button:hover,
+        .sidebar button.active {
+            background: white;
+            color: #6a0dad;
+            transform: scale(1.05);
+        }
+
+        /* Main Content */
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        /* Page Heading */
+        .page-heading {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #5d1a99;
+            padding: 10px 0;
+            border-bottom: 2px solid #5d1a99;
+            margin-bottom: 20px;
+        }
+
+        .notification-container {
+            display: none;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid #5d1a99;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .notification-container.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .notification {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            transition: 0.3s ease-in-out;
+            border-radius: 5px;
+        }
+
+        .notification:hover {
+            background: #f1e7ff;
+            transform: scale(1.02);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .date-box {
+            background: #5d1a99;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 5px;
+            min-width: 60px;
+            margin-right: 15px;
+        }
+
+        .date-box small {
+            display: block;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <img src="https://tse3.mm.bing.net/th?id=OIP.ZMmOL1kqTR2H1yYs4ZZKhgHaHc&pid=Api&P=0&h=180" alt="JNTU-GV Logo">
+        <div>
+            <h1>JAWAHARLAL NEHRU TECHNOLOGICAL UNIVERSITY GURAJADA VIZIANAGARAM</h1>
+            <p>VIZIANAGARAM - 535 003, A.P (Established by Andhra Pradesh Act No.22 of 2021)</p>
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'notices' %}">Notices</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+            <li><a href="{% url 'account' %}">Account</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <button onclick="showSection('exams', this)" class="active">Exams</button>
+            <button onclick="showSection('events', this)">Events</button>
+            <button onclick="showSection('sports', this)">Sports</button>
+            <button onclick="showSection('academic', this)">Academic Events</button>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <div class="page-heading">📢 Notifications | JNTU-GV University</div>
+    
+            <!-- Exams Section -->
+            <div id="exams" class="notification-container show">
+                <h2>📚 Exam Notifications</h2>
+                <div class="notification">
+                    <div class="date-box">29 <small>Mar 2025</small></div>
+                    <p>📅 <a href="https://jntugvcev.edu.in/academics/examinations/results/" target="_blank" style="color: inherit; text-decoration: none;">Results of I B.Tech I Sem Regular & Supplementary Exams</a></p>
+                </div>
+                <div class="notification">
+                    <div class="date-box">29 <small>Mar 2025</small></div>
+                    <p>📅 <a href="https://jntugvcev.edu.in/academics/examinations/results/" target="_blank" style="color: inherit; text-decoration: none;">Results of II B.Tech II Sem Supplementary Exams</a></p>
+                </div>
+                <div class="notification">
+                    <div class="date-box">05 <small>Apr 2025</small></div>
+                    <p>📝 <a href="{% url 'exam_schedule' %}" style="color: inherit; text-decoration: none;">II B.Tech II Semester Exam Schedule Announced</a></p>
+                </div>
+            </div>
+            
+    
+            <!-- Events Section -->
+            <div id="events" class="notification-container">
+                <h2>🎉 Events</h2>
+                <div class="notification">
+                    <div class="date-box">10 <small>Jan 2025</small></div>
+                    <p>
+                        <a href="{% url 'ity' %}" style="text-decoration: none; color: inherit;">🔥 IT YUKTA 2K25</a>
+                    </p>
+                </div>
+                <div class="notification"><div class="date-box">15 <small>Feb 2025</small></div><p>🎭 EKTHRA 2K25</p></div>
+                <div class="notification"><div class="date-box">20 <small>Feb 2025</small></div><p>🎉 ECENTRA 2K25</p></div>
+            </div>
+    
+            <!-- Sports Section -->
+            <div id="sports" class="notification-container">
+                <h2>⚽ Sports</h2>
+                <div class="notification"><div class="date-box">29 <small>Feb 2025</small></div><p>🏐 Volleyball Selected Players List</p></div>
+                <div class="notification"><div class="date-box">29 <small>Feb 2025</small></div><p>🏋️ Weightlifting List</p></div>
+                <div class="notification"><div class="date-box">29 <small>Feb 2025</small></div><p>🧘 Yoga (Men & Women) Selected List</p></div>
+            </div>
+    
+            <!-- Academic Events Section -->
+            <div id="academic" class="notification-container">
+                <h2>📖 Academic Events</h2>
+                <div class="notification"><div class="date-box">15 <small>Mar 2025</small></div><p>🛠️ Skill Development Workshop</p></div>
+                <div class="notification"><div class="date-box">10 <small>Apr 2025</small></div><p>📌 One-Day Orientation Program for Freshers</p></div>
+            </div>
+        </div>
+        <script>
+            function showSection(sectionId, button) {
+                // Hide all sections immediately
+                document.querySelectorAll('.notification-container').forEach(section => {
+                    section.classList.remove('show');
+                    section.style.display = 'none'; // Instantly hide others
+                });
+        
+                // Show the selected section
+                let section = document.getElementById(sectionId);
+                section.style.display = 'block';
+        
+                // Use a timeout only for transition effect
+                setTimeout(() => {
+                    section.classList.add('show');
+                }, 10); // A small delay to trigger transition properly
+        
+                // Update active button
+                document.querySelectorAll('.sidebar button').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+            }
+        </script>
+        
+</body>
+</html>

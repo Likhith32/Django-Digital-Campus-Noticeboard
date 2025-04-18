@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JNTU-GV Digital Campus Noticeboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #6a0dad; /* Changed from gradient to solid purple */
+            color: #fff;
+            scroll-behavior: smooth;
+        }
+        
+        header {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 15px 20px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 15px 15px;
+        }
+
+        header img {
+            height: 80px;
+            margin-right: 15px;
+        }
+
+        header div {
+            color: #333;
+        }
+
+        nav {
+            background-color: #002855;
+            padding: 12px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 25px;
+            position: relative;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        nav ul li a:hover {
+            color: #FFC107;
+        }
+
+        nav ul li a::after {
+            content: "";
+            width: 0;
+            height: 2px;
+            background-color: #FFC107;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: color 0.3s, border-bottom 0.3s;
+        }
+       
+        
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        /* Headline Scroller Styling */
+.headline-wrapper {
+    width: 100%;
+    overflow: hidden;
+    background: #002855;
+    padding: 10px 0;
+    position: relative;
+}
+
+/* Scroller Container */
+.headline-scroller {
+    display: flex;
+    gap: 50px; /* Space between headlines */
+    white-space: nowrap;
+    animation: scroll-left 15s linear infinite; /* Continuous scrolling */
+}
+
+/* Headlines Styling */
+.headline-scroller p {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    display: inline-block;
+    margin: 0;
+    padding: 0 20px;
+    animation: rotate-text 4s infinite alternate; /* Rotating effect */
+}
+
+/* Scrolling Animation */
+@keyframes scroll-left {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* Text Rotation Effect */
+@keyframes rotate-text {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(3deg);
+    }
+}
+
+/* Pause scrolling on hover */
+.headline-wrapper:hover .headline-scroller {
+    animation-play-state: paused;
+}
+
+        section {
+            padding: 20px;
+            margin: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out;
+            color: #333;
+        }
+        .slider-container {
+            max-width: 800px;
+            margin: 50px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+          }
+      
+          .slides {
+            display: flex;
+            width: 100%; /* 3 slides */
+            transition: transform 0.5s ease-in-out;
+          }
+      
+          .slides img {
+            width: 100%;
+            flex-shrink: 0;
+            object-fit: cover;
+          }
+      
+          .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 1;
+          }
+      
+          .prev:hover, .next:hover {
+            background: #ff8800;
+          }
+      
+          .prev {
+            left: 10px;
+          }
+      
+          .next {
+            right: 10px;
+          }
+      
+          .dots {
+            text-align: center;
+            margin-top: 15px;
+          }
+      
+          .dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+          }
+      
+          .active-dot {
+            background-color: #333;
+          }
+        
+        #footer {
+            background: url('footer-bg.jpg') center/cover no-repeat; /* Replace with actual background */
+            padding: 30px 0;
+            position: relative;
+        }
+        
+        /* Footer Styling */
+        footer {
+            color: white;
+            text-align: center;
+        }
+        
+        .footer-content {
+            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 800px;
+            margin: auto;
+        }
+        
+        .footer-content p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        
+        strong {
+            color: orange;
+        }
+        
+        /* Social Icons */
+        .social-icons a {
+            color: white; /* Default icon color */
+            margin: 0 10px;
+            font-size: 20px;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+        
+        .social-icons a:hover {
+            color: orange; /* Hover color */
+        }
+        
+        
+        /* Privacy Link */
+        .privacy {
+            display: block;
+            margin: 10px 0;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .privacy:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .footer-content {
+                padding: 15px;
+            }
+        
+            .social-icons a {
+                font-size: 16px;
+                margin: 0 8px;
+            }
+        
+            .footer-content p {
+                font-size: 12px;
+            }
+        }
+        
+        
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="https://tse3.mm.bing.net/th?id=OIP.ZMmOL1kqTR2H1yYs4ZZKhgHaHc&pid=Api&P=0&h=180" alt="JNTU-GV Logo">
+    <div>
+        <h1>JAWAHARLAL NEHRU TECHNOLOGICAL UNIVERSITY GURAJADA VIZIANAGARAM</h1>
+        <p>VIZIANAGARAM - 535 003, A.P (Established by Andhra Pradesh Act No.22 of 2021)</p>
+    </div>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'notices' %}">Notices</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+        <li><a href="{% url 'account' %}">Account</a></li>
+    </ul>
+</nav>
+<!-- Headline Scroller -->
+<div class="headline-wrapper">
+    <div class="headline-scroller">
+        <p>📢 Admission Open for 2025-26! Apply Now.</p>
+        <p>🏆 JNTU-GV Won Best University Award 2025!</p>
+        <p><a href="{% url 'notices' %}">📝 Exam Notification: Semester Exams Begin from April 15.</a></p>
+        <p>🎓 Placement Drive: Top MNCs Hiring on March 20.</p>
+        <p>📅 Workshop on AI & ML – Register Before March 10.</p>
+    </div>
+</div>
+
+
+ <!-- Slideshow Container -->
+ <div class="slider-container">
+    <div class="slides" id="slides">
+      <img src="https://jntugvcev.edu.in/wp-content/uploads/2024/04/IMG-20240330-WA0024-1280x400.jpg" alt="Slide 1" />
+      <img src="https://jntugvcev.edu.in/wp-content/uploads/2020/03/banner_1.jpg" alt="Slide 2" />
+      <img src="https://tse3.mm.bing.net/th?id=OIP.8ckbAeZum-H-XIfcCYjV8QHaCU&pid=Api&P=0&h=180" alt="Slide 3" />
+    </div>
+    <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+    <button class="next" onclick="changeSlide(1)">&#10095;</button>
+  </div>
+
+  <!-- Dots Navigation -->
+  <div class="dots">
+    <span class="dot" onclick="goToSlide(0)"></span>
+    <span class="dot" onclick="goToSlide(1)"></span>
+    <span class="dot" onclick="goToSlide(2)"></span>
+  </div>
+    
+   
+    
+<section id="footer">
+    <footer>
+        <div class="footer-content">
+            <p>
+                <strong>Contact Us:</strong> JAWAHARLAL NEHRU TECHNOLOGICAL UNIVERSITY-GURAJADA VIZIANAGARAM, 
+                DWARAPUDI, VIZIANAGARAM, ANDHRA PRADESH - 535 003, Andhra Pradesh, INDIA.
+            </p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/JntuVizianagaram/" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://in.linkedin.com/school/jntugv/" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://x.com/JNTU_Gurajada" target="_blank">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com/jntu_gurajada/" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.youtube.com/@JNTUGV" target="_blank">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+            
+            <a href="#" class="privacy">Privacy & Policy</a>
+            <p>© Copyright 2024 <strong>JNTU-GV Vizianagaram</strong>. All Rights Reserved.</p>
+            <p>Designed and Developed by <strong>M.Likhith Kumar, JNTU-GV</strong></p>
+        </div>
+    </footer>
+</section>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.getElementById("slides");
+    const dots = document.querySelectorAll(".dot");
+
+    function updateSlide() {
+      slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+      dots.forEach(dot => dot.classList.remove("active-dot"));
+      if (dots[currentSlide]) dots[currentSlide].classList.add("active-dot");
+    }
+
+    function changeSlide(direction) {
+      const totalSlides = dots.length;
+      currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+      updateSlide();
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateSlide();
+    }
+
+    updateSlide(); // Show first slide on load
+  </script>
+
+
+
+
+
+</body>
+</html>
